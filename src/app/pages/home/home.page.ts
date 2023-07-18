@@ -15,7 +15,8 @@ export class HomePage implements OnInit {
   }
 
   listar() {
-    return this.servico.listarCarac().subscribe((dados) => {
+    return this.servico.listarCarac()
+    .subscribe((dados) => {
       this.characters = dados;
 
       console.log(dados);

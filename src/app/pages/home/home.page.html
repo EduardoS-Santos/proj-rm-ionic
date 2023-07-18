@@ -1,14 +1,24 @@
 <ion-header [translucent]="true">
+ 
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>home</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true">
-  <!-- <div size="large" *ngFor="let dados of characters.results">
-    <ion-img src="{{dados.image}}"></ion-img>
-    <p>Nome: {{ dados.name }}</p>
-    <p>especie: {{ dados.species }}</p>
-    <p>Origem: {{ dados.origin.name }}</p>
-    <p>Status: {{ dados.status }}</p>
-  </div> -->
+<ion-content [fullscreen]="true" *ngIf="characters">
+  <ion-grid [fixed]="true">
+  <!-- {{characters.results | json}} -->
+  <h2 class="title">Os melhores personagens estão aqui</h2>
+  <ion-row>
+    <ion-col id="posi" *ngFor="let dados of characters.results">
+      <ion-img src="{{dados.image}}"></ion-img>
+      <p>Nome: {{ dados.name }}</p>
+      <p>especie: {{ dados.species }}</p>
+      <p>Origem: {{ dados.origin.name }}</p>
+      <p>Status: {{ dados.status }}</p>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>
