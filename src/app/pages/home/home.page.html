@@ -1,14 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>home</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true">
-  <!-- <div size="large" *ngFor="let dados of characters.results">
-    <ion-img src="{{dados.image}}"></ion-img>
-    <p>Nome: {{ dados.name }}</p>
-    <p>especie: {{ dados.species }}</p>
-    <p>Origem: {{ dados.origin.name }}</p>
-    <p>Status: {{ dados.status }}</p>
-  </div> -->
+<ion-content [fullscreen]="true" *ngIf="characters">
+  <ion-grid [fixed]="true">
+    <!-- {{characters.results | json}} -->
+    <h2 class="title">Os melhores personagens estão aqui</h2>
+    <p>
+      <ion-input
+        label="Nome:"
+        type="text"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Pesquise seu personagem aqui (EN)"
+        [autofocus]="true"
+        error-text="Nome inválido!"
+        [(ngModel)]="name"
+        required
+        minlength="3"
+      ></ion-input>
+      <ion-button type="submit" id="present-alert" (click)="pesquisar(name)"
+        >Pesquisar</ion-button
+      >
+    </p>
+    <p></p>
+    <ion-row>
+      <ion-col id="posi" *ngFor="let dados of characters.results">
+        <ion-img src="{{dados.image}}"></ion-img>
+        <p>Nome: {{ dados.name }}</p>
+        <ion-accordion-group>
+          <ion-accordion value="first">
+            <ion-item slot="header" color="light">
+              <ion-label>Detalhes</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              Especie: {{ dados.species }}
+            </div>
+            <div class="ion-padding" slot="content">
+              Origem: {{ dados.origin.name }}
+            </div>
+            <div class="ion-padding" slot="content">
+              Status: {{ dados.status }}
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
