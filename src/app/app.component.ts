@@ -10,6 +10,7 @@ export class AppComponent {
     { title: 'Contatos', url: '/contacts', icon: 'mail' },
     { title: 'Sobre', url: '/sobre', icon: 'dice' },
     { title: 'Politicas de privacidade', url: '/private', icon: 'document-lock' },
+    { title: 'Login', url: '/login', icon: 'person' },
   ];
   constructor() {}
 }

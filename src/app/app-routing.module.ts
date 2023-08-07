@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { redirectUnauthorizedTo, redirectLoggedInTo, AuthGuard } from '@angular/fire/auth-guard';
 
+const toLogin = () => redirectUnauthorizedTo(['/login']);
+const toHome = () => redirectLoggedInTo(['/home']);
 
 const routes: Routes = [
-  {
+
+ {
     path: '',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
   {
     path: 'home',
@@ -22,6 +27,16 @@ const routes: Routes = [
   {
     path: 'private',
     loadChildren: () => import('./pages/private/private.module').then( m => m.PrivatePageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+   
+  },
+  {
+    path: '**',
+    redirectTo: 'login',
+    pathMatch: 'full'
   }
 ];
 

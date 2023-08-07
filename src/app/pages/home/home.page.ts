@@ -8,6 +8,8 @@ import { RmserviceService } from 'src/app/rmservice.service';
 })
 export class HomePage implements OnInit {
   characters: any;
+  name: string = '';
+  req = false;
   constructor(private servico: RmserviceService) {}
 
   ngOnInit() {
@@ -15,18 +17,14 @@ export class HomePage implements OnInit {
   }
 
   listar() {
-    return this.servico.listarCarac()
-    .subscribe((dados) => {
+    return this.servico.listarCarac().subscribe((dados) => {
       this.characters = dados;
-
-      console.log(dados);
     });
   }
 
   pesquisar(nome: string) {
     return this.servico.pesquisarCarac(nome).subscribe((dados) => {
-      dados = this.characters;
-      this.listar();
+      this.characters = dados;
     });
   }
 }
