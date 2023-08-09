@@ -14,7 +14,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <div>
+  <div *ngIf="!form.sended">
     <p>Entre em contato Conosco</p>
 
     <p>
@@ -23,9 +23,10 @@
         type="text"
         label-placement="floating"
         fill="outline"
-        placeholder="Nome completo do item"
+        placeholder="Nome completo "
         [autofocus]="true"
         error-text="Nome inválido!"
+        [(ngModel)]="form.name"
         required
         minlength="3"
       ></ion-input>
@@ -37,8 +38,9 @@
         type="Email"
         label-placement="floating"
         fill="outline"
-        placeholder="Descriçao do produto"
-        error-text="Descriçao invalida!"
+        placeholder="Email"
+        [(ngModel)]="form.email"
+        error-text="Email invalido"
         required
       ></ion-input>
     </p>
@@ -49,14 +51,37 @@
         type="text"
         label-placement="floating"
         fill="outline"
-        placeholder="Localização do item"
-        error-text="Localizaçao inválida!"
+        placeholder="Assunto"
+        [(ngModel)]="form.assunto"
+        error-text="assunto vazio"
         required
         minlength="3"
       ></ion-input>
     </p>
     <p>
-      <ion-button type="submit" id="present-alert">Enviar</ion-button>
+      <ion-input
+        label="Descrição"
+        type="text"
+        label-placement="floating"
+        fill="outline"
+        [(ngModel)]="form.descricao"
+        placeholder="Fale sobre o Assunto"
+        error-text="Descrição vazia"
+        required
+        minlength="3"
+      ></ion-input>
+    </p>
+    <p>
+      <ion-button type="submit" id="present-alert" (click)="sendContact()">Enviar</ion-button>
+    </p>
+  </div>
+
+  <div *ngIf="form.sended">
+    <h4>Olá {{ form.name }}!</h4>
+    <p>Seu contato foi enviado com sucesso.</p>
+    <p><em>Obrigado...</em></p>
+    <p>
+      <ion-button type="submit" id="present-alert" (click)="refresh()">Retornar</ion-button>
     </p>
   </div>
 </ion-content>

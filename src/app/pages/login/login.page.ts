@@ -10,19 +10,22 @@ import { Auth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, User } f
 export class LoginPage implements OnInit {
 
   public env = environment;
-
-  constructor(private auth: Auth = inject(Auth)) { }
+  private auth: Auth = inject(Auth)
+  
+  constructor() { }
 
   ngOnInit() {
-  }
 
+  }
 
 
   logint() {
     if (this.env.signInMethod == 'redirect')
-      signInWithRedirect(this.auth, new GoogleAuthProvider());
+    signInWithRedirect(this.auth, new GoogleAuthProvider());
     else
       signInWithPopup(this.auth, new GoogleAuthProvider());
+
+
   }
 
 }
